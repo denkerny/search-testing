@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  currentClient: object
+  show: boolean
+
+  dataForDetails(client): void{
+    this.currentClient = client;
+  }
+
+  toShowAnotherDetails(show){
+    this.show = show;
+  }
 }

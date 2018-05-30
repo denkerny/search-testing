@@ -1,0 +1,49 @@
+  
+  <form>
+    <div class="row">
+      <div class="col">
+        <input type="text" name="search" class="form-control" [(ngModel)]="inputValue" placeholder="search"/>
+      </div>
+    </div>
+  </form>
+  <table class="table" *ngIf="!inputValue">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">pic</th>
+        <th scope="col">name</th>
+        <th scope="col">job</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients; let i = index" (click)="onClientTrClick(client)">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img width="50px" height="50px" src="{{client.general.avatar}}" alt="">
+        </td>
+        <td>{{ client.general.firstName }}</td>
+        <td>{{ client.job.title }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="inputValue && getSortedClients()">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">pic</th>
+        <th scope="col">name</th>
+        <th scope="col">job</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sortedClient of sortedClients | filter:inputValue; let i = index" (click)="onClientTrClick(sortedClient)">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img width="50px" height="50px" src="{{sortedClient.avatar}}" alt="">
+        </td>
+        <td>{{ sortedClient.firstName }}</td>
+        <td>{{ sortedClient.title }}</td>
+      </tr>
+    </tbody>
+  </table>

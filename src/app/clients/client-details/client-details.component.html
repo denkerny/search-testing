@@ -1,0 +1,14 @@
+<div class="card sticky" style="width: 12rem;">
+  <img class="card-img-top" [src]="client.avatar || client.general.avatar" alt="Card image cap">
+  <div class="card-body" *ngIf="client.general">
+    <h5 class="card-title">{{ client.general.firstName + " " + client.general.lastName }}</h5>
+    <p class="card-text">{{ client.job.company }}</p>
+    <a href="#" class="btn btn-primary" (click)="closeDetails($event)">Close</a>
+  </div>
+  <div class="card-body" *ngIf="!client.general">
+      <h5 class="card-title">{{ client.firstName + " " + client.lastName }}</h5>
+      <p class="card-text">{{ client.company }}</p>
+      <a href="#" class="btn btn-primary" (click)="closeDetails($event)">Close</a>
+    </div>
+</div>
+
