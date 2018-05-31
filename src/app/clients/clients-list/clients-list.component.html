@@ -43,7 +43,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr class="active"  *ngFor="let client of newClients | filter:term; let i = index;" (click)="onClientClick(client)">
+		<tr class="active"  *ngFor="let client of newClients | filter:term; let i = index; let subModule of subModules" [class.on]="selectedIndex === i" (click)="onClientClick(client); setIndex(i)">
 			<th scope="row">{{ i + 1 }}</th>
 			<td>
 				<img src="{{ client.avatar }}" alt="">
