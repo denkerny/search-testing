@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ (client.firstName || client.general.firstName) + " " + (client.lastName || client.general.lastName)}}</h5>
     <p class="card-text">{{ client.company || client.job.company }}</p>
-    <button (click)="onCloseButton()">Close</button>
+    <button class="btn btn-secondary btn-sm" (click)="onCloseButton()">Close</button>
   </div>
 </div>
 
