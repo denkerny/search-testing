@@ -12,7 +12,7 @@ export class ClientsListComponent implements OnInit, OnDestroy {
 
   clients: object[]
   subscription: Subscription
-  sortedClients
+  sortedClients: object[]
 
   constructor(private clientsService: ClientsService) { }
 
@@ -33,14 +33,14 @@ export class ClientsListComponent implements OnInit, OnDestroy {
   }
 
   getSortedClients(){
-    this.sortedClients = [];
-    this.clients.map((clients) => {
+    let arr = [];
+    this.clients.map(function (el){
       let obj = {};
-      for(let key in clients){
-        Object.assign(obj, clients[key]) 
+      for(let key in el){
+        Object.assign(obj, el[key])
       }
-      this.sortedClients.push(obj)
+      arr.push(obj);
     })
-    return(this.sortedClients)
+    return this.newClients = arr;
   }
 }
