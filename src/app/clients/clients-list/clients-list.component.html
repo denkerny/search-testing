@@ -2,6 +2,10 @@
   <form>
     <div class="row">
       <div class="col">
+        <div>
+          <img *ngIf="!term" src="https://logdok.ru/wp-content/uploads/poisk-300x299.png" width="20px" class="img" alt="">
+          <img *ngIf="term" src="https://image.freepik.com/iconen-gratis/letter-x_318-26692.jpg" width="20px" style="cursor: pointer" class="img" alt="" (click)="term = null">
+        </div>
         <input type="text" name="search" class="form-control" [(ngModel)]="inputValue" placeholder="search"/>
       </div>
     </div>
