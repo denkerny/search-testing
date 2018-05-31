@@ -1,55 +1,55 @@
-  
-  <form>
-    <div class="row">
-      <div class="col">
-        <div>
-          <img *ngIf="!term" src="https://logdok.ru/wp-content/uploads/poisk-300x299.png" width="20px" class="img" alt="">
-          <img *ngIf="term" src="https://image.freepik.com/iconen-gratis/letter-x_318-26692.jpg" width="20px" style="cursor: pointer" class="img" alt="" (click)="term = null">
-        </div>
-        <input type="text" name="search" class="form-control" [(ngModel)]="inputValue" placeholder="search"/>
-      </div>
-    </div>
-  </form>
-  <table class="table" *ngIf="!inputValue">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">pic</th>
-        <th scope="col">name</th>
-        <th scope="col">job</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="active"  *ngFor="let client of clients; let i = index; let subModule of subModules" 
-          [class.on]="selectedIndex === i" (click)="onClientClick(client); setIndex(i)">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          <img width="50px" height="50px" src="{{client.general.avatar}}" alt="">
-        </td>
-        <td>{{ client.general.firstName }}</td>
-        <td>{{ client.job.title }}</td>
-      </tr>
-    </tbody>
-  </table>
 
-  <table class="table" *ngIf="inputValue && getSortedClients()">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">pic</th>
-        <th scope="col">name</th>
-        <th scope="col">job</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="active" *ngFor="let sortedClient of sortedClients | filter:inputValue; let i = index; let subModule of subModules" 
-          [class.on]="selectedIndex === i" (click)="onClientTrClick(sortedClient);  setIndex(i)">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          <img width="50px" height="50px" src="{{sortedClient.avatar}}" alt="">
-        </td>
-        <td>{{ sortedClient.firstName }}</td>
-        <td>{{ sortedClient.title }}</td>
-      </tr>
-    </tbody>
-  </table>
+<form>
+  <div class="row">
+    <div class="col position">
+      <div>
+        <img *ngIf="!term" src="https://logdok.ru/wp-content/uploads/poisk-300x299.png" width="20px" class="img" alt="">
+        <img *ngIf="term" src="https://image.freepik.com/iconen-gratis/letter-x_318-26692.jpg" width="20px" style="cursor: pointer" class="img" alt="" (click)="term = null">
+      </div>
+      
+      <input type="text" name="searchValue" class="form-control" placeholder="able to search..." [(ngModel)]="term">
+    </div>
+  </div>
+</form>
+
+<table class="table" *ngIf="!term">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">pic</th>
+			<th scope="col">name</th>
+			<th scope="col">job</th>
+		</tr>
+	</thead>
+	<tbody class="sub_modules">
+		<tr class="active"  *ngFor="let client of clients; let i = index; let subModule of subModules" [class.on]="selectedIndex === i" (click)="onClientClick(client); setIndex(i)">
+			<th scope="row">{{ i + 1 }}</th>
+			<td>
+				<img src="{{ client.general.avatar }}" alt="">
+			</td>
+			<td>{{ client.general.firstName }}</td>
+			<td>{{ client.job.title }}</td>
+		</tr>
+	</tbody>
+</table>
+
+<table class="table" *ngIf="term && get()">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">pic</th>
+			<th scope="col">name</th>
+			<th scope="col">job</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="active"  *ngFor="let client of newClients | filter:term; let i = index;" (click)="onClientClick(client)">
+			<th scope="row">{{ i + 1 }}</th>
+			<td>
+				<img src="{{ client.avatar }}" alt="">
+			</td>
+			<td>{{ client.firstName }}</td>
+			<td>{{ client.title }}</td>
+		</tr>
+	</tbody>
+</table>
