@@ -13,6 +13,7 @@ export class ClientsListComponent implements OnInit, OnDestroy {
   clients: object[]
   subscription: Subscription
   sortedClients: object[]
+  selectedIndex: number = null;
 
   constructor(private clientsService: ClientsService) { }
 
@@ -42,5 +43,9 @@ export class ClientsListComponent implements OnInit, OnDestroy {
       arr.push(obj);
     })
     return this.newClients = arr;
+  }
+  
+  setIndex(index: number) {
+    this.selectedIndex = index;
   }
 }
